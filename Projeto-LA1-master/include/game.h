@@ -19,7 +19,7 @@ void game () {
     getmaxyx (stdscr,y,x);
     tx = x;
     x-=(x/10);
-    while (floor < 5) {
+    while (floor < 3) {
         erase ();
         mapa = createmap (x,y);
         for (int i = 0;i < y;i++) {
