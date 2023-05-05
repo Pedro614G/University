@@ -1,5 +1,4 @@
 #include <stdio.h>
-//finalmente?
 
 float multInt1 (int n, float m){
     float r = 0;
