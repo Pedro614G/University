@@ -14,6 +14,7 @@ void game () {
     start_color ();
     init_pair(1,COLOR_WHITE,COLOR_WHITE);
     init_pair(2,COLOR_WHITE,COLOR_BLACK);
+    init_pair(3,COLOR_BLACK,COLOR_GREEN);
     noecho ();
     curs_set(0);
     getmaxyx (stdscr,y,x);
@@ -28,9 +29,13 @@ void game () {
                     attrset (COLOR_PAIR(1));
                     mvprintw(i,j,"%c",mapa[i][j].ch);
                 }
-                else {
-                    attrset (COLOR_PAIR(2));
+                else if(mapa[i][j].ch == 's') {
+                    attrset (COLOR_PAIR(3));
                     mvprintw(i,j,"%c",mapa[i][j].ch); 
+                }
+                else{
+                    attrset (COLOR_PAIR(2));
+                    mvprintw(i,j,"%c",mapa[i][j].ch);
                 }
             }
         }

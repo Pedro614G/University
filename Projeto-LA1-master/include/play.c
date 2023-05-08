@@ -9,7 +9,18 @@ typedef struct player {
     int health;
 } Player;
 
+void reload_map(int y,int x, Map *m){
+    for (int i = 0; i < y; i++){
+        for (int j = 0; j < x; j++){
+            mvprintw(i,j,"%c",m[i][j].ch);
+        }
+    }
+}
+
 int movement (Player j,Map *m) {
+    int x,y;
+    getmaxyx(stdscr,y,x);
+    x*=0.9;
     int tx,ty,t;
     t = 0;
     char s = '1';
@@ -32,8 +43,8 @@ int movement (Player j,Map *m) {
                 mvprintw (0,0,"%s","Wall here");
             }
             else {
+                reload_map (y, x, m);
                 mvprintw (j.p.y,j.p.x,"%c",j.character);
-                mvprintw (ty,tx,"%c",m[ty][tx].ch);
                 }
             break;
         case 's':
@@ -43,8 +54,8 @@ int movement (Player j,Map *m) {
                 mvprintw (0,0,"%s","Wall here");
             }
             else {
+                reload_map (y, x, m);
                 mvprintw (j.p.y,j.p.x,"%c",j.character);
-                mvprintw (ty,tx,"%c",m[ty][tx].ch);
                 }
             break;
         case 'a':
@@ -54,8 +65,8 @@ int movement (Player j,Map *m) {
                 mvprintw (0,0,"%s","Wall here");
             }
             else {
+                reload_map (y, x, m);
                 mvprintw (j.p.y,j.p.x,"%c",j.character);
-                mvprintw (ty,tx,"%c",m[ty][tx].ch);
                 }
             break;
         case 'd':
@@ -65,8 +76,8 @@ int movement (Player j,Map *m) {
                 mvprintw (0,0,"%s","Wall here");
             }
             else {
+                reload_map (y, x, m);
                 mvprintw (j.p.y,j.p.x,"%c",j.character);
-                mvprintw (ty,tx,"%c",m[ty][tx].ch);
                 }
             break;
         case 'k':
