@@ -9,10 +9,24 @@ typedef struct player {
     int health;
 } Player;
 
-void reload_map(int y,int x, Map *m){
+void reload_map (int y, int x,Map *m){
+    init_pair(1,COLOR_WHITE,COLOR_WHITE);
+    init_pair(2,COLOR_WHITE,COLOR_BLACK);
+    init_pair(3,COLOR_BLACK,COLOR_GREEN);
     for (int i = 0; i < y; i++){
         for (int j = 0; j < x; j++){
-            mvprintw(i,j,"%c",m[i][j].ch);
+            if(m[i][j].ch == '#'){
+                attrset (COLOR_PAIR(1));
+                mvprintw(i,j,"%c",m[i][j].ch);
+            }
+            else if(m[i][j].ch == 's'){
+                attrset (COLOR_PAIR(3));
+                mvprintw(i,j,"%c",m[i][j].ch);
+            }
+            else{
+                attrset (COLOR_PAIR(2));
+                mvprintw(i,j,"%c",m[i][j].ch);
+            }
         }
     }
 }
@@ -21,7 +35,7 @@ int movement (Player j,Map *m) {
     int x,y;
     getmaxyx(stdscr,y,x);
     x*=0.9;
-    int tx,ty,t;
+    int t;
     t = 0;
     char s = '1';
     while (s != 'q') {
@@ -32,8 +46,6 @@ int movement (Player j,Map *m) {
         }
         t = time(0);
         s = (char) getchar ();
-        tx = j.p.x;
-        ty = j.p.y;
         switch (s)
         {
         case 'w':
